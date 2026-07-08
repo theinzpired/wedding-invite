@@ -127,12 +127,34 @@
   }
   .seal-wrap svg{ width:100%; height:100%; display:block; }
   .seal-glow{
-    position:absolute; inset:-18px; border-radius:50%;
-    background: radial-gradient(circle, rgba(246,230,180,.35), transparent 70%);
-    animation:pulse 2.6s ease-in-out infinite;
-  }
-  @keyframes pulse{ 0%,100%{ transform:scale(.92); opacity:.6;} 50%{ transform:scale(1.06); opacity:1;} }
+    position:absolute;
+    inset:-24px;
+    border-radius:10%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(246, 230, 180, 0),
+            rgba(246,230,180,.15) 45%,
+            transparent 60%
+        );
+    animation:royalGlow 3s ease-in-out infinite;
+}
 
+@keyframes royalGlow{
+
+    0%,100%{
+        transform:scale(.92);
+        opacity:.45;
+    }
+
+    50%{
+        transform:scale(1.12);
+        opacity:1;
+    }
+
+}
+  @keyframes pulse{ 0%,100%{ transform:scale(.92); opacity:.6;} 50%{ transform:scale(0.95); opacity:0.9;} }
+/* 
   .seal-wrap .crack{
     stroke: var(--gold-1);
     stroke-width:1.4;
@@ -140,8 +162,9 @@
     opacity:0;
     stroke-dasharray:60;
     stroke-dashoffset:60;
-  }
-  .seal-wrap.open .crack{
+  } */
+/*  */
+  /* .seal-wrap.open .crack{
     animation: crackline .5s ease forwards;
   }
   .seal-wrap.open .seal-face{
@@ -152,7 +175,174 @@
     0%{ transform:scale(1); opacity:1; }
     60%{ transform:scale(1.12); opacity:1; }
     100%{ transform:scale(1.35); opacity:0; }
-  }
+  } */
+
+  /*  */
+  /* ---------- Royal Stamp Animation ---------- */
+
+.seal-wrap{
+    width:128px;
+    height:128px;
+    position:relative;
+    cursor:pointer;
+    transform-origin:center;
+}
+
+.seal-face{
+    transform-origin:center;
+}
+
+/* gold shine */
+
+.seal-shine{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.seal-shine::after{
+    content:"";
+    position:absolute;
+    top:-20%;
+    left:-70%;
+    width:45%;
+    height:140%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.9),
+        transparent
+    );
+    transform:rotate(20deg);
+    opacity:0;
+}
+
+.seal-wrap.open .seal-shine::after{
+    animation:goldSweep .7s ease forwards;
+}
+
+/* expanding glow */
+
+.seal-wrap::after{
+    content:"";
+    position:absolute;
+    inset:10px;
+    border-radius:50%;
+    border:2px solid rgba(246,230,180,.85);
+    opacity:0;
+    transform:scale(.7);
+}
+
+.seal-wrap.open::after{
+    animation:ripple .9s ease-out forwards;
+}
+
+/* whole seal */
+
+.seal-wrap.open .seal-face{
+    animation:royalSeal .95s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* keyframes */
+
+@keyframes goldSweep{
+
+    0%{
+        left:-70%;
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        left:140%;
+        opacity:0;
+    }
+
+}
+
+@keyframes ripple{
+
+    0%{
+        opacity:.9;
+        transform:scale(.7);
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(2.2);
+    }
+
+}
+
+@keyframes royalSeal{
+
+    0%{
+        transform:
+            scale(1)
+            rotate(0deg)
+            translateY(0);
+        opacity:1;
+    }
+
+    18%{
+        transform:
+            scale(.92)
+            rotate(0deg);
+    }
+
+    55%{
+        transform:
+            translateY(-16px)
+            rotate(-6deg)
+            scale(1.04);
+    }
+
+    100%{
+        transform:
+            translateY(-85px)
+            rotate(-12deg)
+            scale(.72);
+        opacity:0;
+    }
+
+}
+  /*  */
+.seal-wrap {
+    transition: transform .8s cubic-bezier(.22,1,.36,1);
+}
+
+.seal-wrap.open{
+    animation: sealLift .9s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes sealLift{
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+    20%{
+        transform:scale(.94);
+    }
+    55%{
+        transform:
+            translateY(-18px)
+            rotate(-8deg)
+            scale(1.05);
+    }
+    100%{
+        transform:
+            translateY(-90px)
+            rotate(-15deg)
+            scale(.75);
+        opacity:0;
+    }
+}
+  /*  */
 
   .tap-hint{
     font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.3em;
@@ -216,8 +406,23 @@
   }
 
   .scroll-cue{
-    display:flex; flex-direction:column; align-items:center; gap:.4rem; margin-top:3rem; color:var(--purple-deep);
-  }
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.4rem;
+    margin-top:3rem;
+    color:var(--purple-deep);
+    cursor:pointer;
+    transition:transform .25s ease;
+}
+
+.scroll-cue:hover{
+    transform:translateY(4px);
+}
+
+.scroll-cue:active{
+    transform:translateY(8px);
+}
   .scroll-cue span{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; opacity:.7; }
   .chevron{ width:9px; height:9px; border-right:1.4px solid var(--gold-2); border-bottom:1.4px solid var(--gold-2); transform:rotate(45deg); animation:bob 1.8s ease-in-out infinite; }
   @keyframes bob{ 0%,100%{transform:translateY(0) rotate(45deg);} 50%{transform:translateY(6px) rotate(45deg);} }
@@ -252,8 +457,8 @@
   .event-card::before{ top:12px; left:12px; border-right:none; border-bottom:none; }
   .event-card::after{ bottom:12px; right:12px; border-left:none; border-top:none; }
 
-  .event-label{ margin-bottom:.5rem; }
-  .event-date{ font-size:1.8rem; margin:.3rem 0 .2rem; }
+  .event-label{ margin-bottom:5rem; font-size: .80rem;}
+  .event-date{ font-size:1.8rem; margin:1rem 0 .3rem; }
   .event-day{ font-size:.85rem; letter-spacing:.16em; text-transform:uppercase; color:var(--purple-deep); margin-bottom:1.1rem;}
   .event-time{ font-size:1.05rem; color:var(--ink); margin-bottom:1.4rem; }
   .event-time strong{ color:var(--purple-deep); font-weight:600; }
@@ -321,7 +526,7 @@
       <span id="cover-groom">Nipun</span>
     </div>
 
-    <div class="seal-wrap" id="seal" onclick="openInvite()" role="button" aria-label="Tap to open invitation">
+    <!-- <div class="seal-wrap" id="seal" onclick="openInvite()" role="button" aria-label="Tap to open invitation">
       <div class="seal-glow"></div>
       <svg viewBox="0 0 128 128">
         <g class="seal-face">
@@ -336,10 +541,29 @@
             </linearGradient>
           </defs>
         </g>
-        <path class="crack" d="M40 50 L58 62 L50 78 L70 70 L64 96"/>
-        <path class="crack" d="M88 44 L70 60 L82 74" style="animation-delay:.05s"/>
+        <path class="crack" d="M40 50 L58 62 L50 78 L70 70 L64 96"/> 
+         <path class="crack" d="M88 44 L70 60 L82 74" style="animation-delay:.05s"/> 
       </svg>
-    </div>
+    </div> -->
+    <div class="seal-wrap" id="seal" onclick="openInvite()">
+    <div class="seal-glow"></div>
+    <div class="seal-shine"></div>
+
+    <svg viewBox="0 0 128 128">
+        <g class="seal-face">
+          <circle cx="64" cy="64" r="52" fill="none" stroke="url(#g1)" stroke-width="2"/>
+          <circle cx="64" cy="64" r="44" fill="none" stroke="#F6E6B4" stroke-width="1" opacity=".6"/>
+          <text x="64" y="72" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="30" fill="#F6E6B4">A&amp;N</text>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#8A6B2E"/>
+              <stop offset="50%" stop-color="#F6E6B4"/>
+              <stop offset="100%" stop-color="#C9A24B"/>
+            </linearGradient>
+          </defs>
+        </g>
+    </svg>
+</div>
 
     <p class="tap-hint">Tap the seal to open</p>
   </div>
@@ -367,17 +591,17 @@
     <p class="titles">We Are Getting Married</p>
 
     <p class="message" id="invite-message">
-      Two hearts, one journey — with the blessings of our elders and the joy of our loved ones,
-      we begin a new chapter together. Your presence would make this moment truly complete.
-      We warmly invite you to be part of our celebration.
+      Two hearts, one journey - with the blessings of our elders and the joy of our loved ones,
+      we begin a new chapter together. <br> Your presence would make this moment truly complete.
+      <br>We warmly invite you to be part of our celebration.
     </p>
 
     <div class="divider"></div>
 
-    <div class="scroll-cue">
-      <span>Scroll</span>
-      <div class="chevron"></div>
-    </div>
+    <div class="scroll-cue" onclick="scrollToNext()" role="button" tabindex="0">
+    <span>Scroll</span>
+    <div class="chevron"></div>
+</div>
   </section>
 
 
@@ -458,22 +682,23 @@ function openInvite(){
 
   // try to start music on this user gesture
   audio.volume = 0.65;
-  audio.play().then(()=>{
-    document.getElementById('music-toggle').classList.add('playing');
-  }).catch(()=>{ /* autoplay blocked, user can tap the music button */ });
+  audio.play().then(() => {
+    musicBtn.classList.add("playing");
+    shouldResumeMusic = true;
+}).catch(() => {});
 
   setTimeout(()=>{
     cover.classList.add('hide');
     document.body.classList.remove('locked');
     spawnPetals();
     initReveal();
-  }, 480);
+},100);
 }
 
 /* ---------- Mild petal pop after reveal ---------- */
 function spawnPetals(){
   const layer = document.getElementById('petal-layer');
-  const total = 20;
+  const total = 25;
   for(let i=0;i<total;i++){
     const p = document.createElement('div');
     p.className = 'petal';
@@ -529,16 +754,45 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 /* ---------- Music toggle ---------- */
-function toggleMusic(){
-  const audio = document.getElementById('bg-audio');
-  const btn = document.getElementById('music-toggle');
-  if(audio.paused){
-    audio.play();
-    btn.classList.add('playing');
-  } else {
-    audio.pause();
-    btn.classList.remove('playing');
-  }
+const audio = document.getElementById("bg-audio");
+const musicBtn = document.getElementById("music-toggle");
+
+let shouldResumeMusic = false;
+
+function toggleMusic() {
+    if (audio.paused) {
+        audio.play().then(() => {
+            musicBtn.classList.add("playing");
+        }).catch(() => {});
+    } else {
+        audio.pause();
+        musicBtn.classList.remove("playing");
+    }
+}
+
+// Pause music when tab becomes inactive
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        shouldResumeMusic = !audio.paused;
+
+        if (!audio.paused) {
+            audio.pause();
+            musicBtn.classList.remove("playing");
+        }
+    } else {
+        if (shouldResumeMusic) {
+            audio.play().then(() => {
+                musicBtn.classList.add("playing");
+            }).catch(() => {});
+        }
+    }
+});
+
+function scrollToNext() {
+    document.getElementById("sec-wedding").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
 </script>
 </body>
