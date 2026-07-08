@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Athira &amp; Nipun — Wedding Invitation</title>
+
+<!-- ============================================================
+     WHATSAPP / SOCIAL SHARE PREVIEW
+     Edit these when you host the site — og:url and og:image need
+     to be full https:// links once the site is live.
+============================================================= -->
+<meta property="og:title" content="Dr. Athira & Dr. Nipun — Wedding Invitation">
+<meta property="og:description" content="Join us as we begin our forever · 30th August 2026, Koppam">
+<meta property="og:image" content="assets/couple.jpg">
+<meta property="og:type" content="website">
+<meta name="description" content="Wedding invitation for Dr. Athira & Dr. Nipun — 30th August 2026, Safa Convention Center, Koppam">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Parisienne&family=Marcellus&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:      #FBF6EE;
+    --ivory:      #FFFDF9;
+    --lilac-soft: #E7D9EF;
+    --lilac-mid:  #B79FCB;
+    --purple-deep:#5B3A6E;
+    --plum:       #3A2444;
+    --gold-1:     #F6E6B4;
+    --gold-2:     #C9A24B;
+    --gold-3:     #8A6B2E;
+    --petal:      #D8BFE0;
+    --ink:        #4B3557;
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family:'Marcellus', serif;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+  body.locked{ overflow:hidden; height:100vh; }
+
+  h1,h2,h3, .display{
+    font-family:'Cormorant Garamond', serif;
+    color:var(--plum);
+    letter-spacing:.02em;
+    margin:0;
+  }
+  .script{
+    font-family:'Parisienne', cursive;
+    color:var(--purple-deep);
+  }
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    color:var(--gold-3);
+  }
+  .gold-text{
+    background:linear-gradient(90deg,var(--gold-3),var(--gold-1) 35%,var(--gold-2) 60%, var(--gold-1) 80%, var(--gold-3));
+    background-size:220% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shine 5s linear infinite;
+  }
+  @keyframes shine{ to{ background-position:-220% center; } }
+
+  a{ color:inherit; text-decoration:none; }
+  section{ position:relative; padding: 5.5rem 1.5rem; max-width:560px; margin:0 auto; }
+
+  /* ============================================================
+     COVER / OPENING SCREEN
+  ============================================================= */
+  #cover{
+    position:fixed; inset:0; z-index:60;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:#2b1c38;
+    transition: opacity 1s ease, visibility 1s ease;
+  }
+  #cover.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+
+  .cover-bg{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(180deg, rgba(37,22,49,.55), rgba(43,28,56,.86) 60%, rgba(30,18,40,.95)),
+      url('assets/couple.jpg');
+    background-size:cover;
+    background-position: center 20%;
+    filter:saturate(.85) brightness(.8);
+  }
+  .cover-inner{
+    position:relative; z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:1.6rem;
+    padding:2rem;
+    text-align:center;
+  }
+  .frame-corner{
+    position:absolute; width:34px; height:34px; opacity:.75;
+    border: 1.5px solid var(--gold-1);
+  }
+  .frame-corner.tl{ top:22px; left:22px; border-right:none; border-bottom:none; }
+  .frame-corner.tr{ top:22px; right:22px; border-left:none; border-bottom:none; }
+  .frame-corner.bl{ bottom:22px; left:22px; border-right:none; border-top:none; }
+  .frame-corner.br{ bottom:22px; right:22px; border-left:none; border-top:none; }
+
+  .cover-eyebrow{ color: var(--lilac-soft); letter-spacing:.35em; }
+  .cover-names{
+    font-size:2.1rem; color:var(--gold-1); font-weight:500;
+    display:flex; align-items:center; gap:.6rem; line-height:1.15;
+  }
+  .cover-names .amp{ font-family:'Parisienne',cursive; font-size:1.6rem; color:var(--lilac-soft); }
+
+  /* Wax-seal monogram */
+  .seal-wrap{
+    width:128px; height:128px; position:relative; cursor:pointer;
+    margin-top:.5rem;
+  }
+  .seal-wrap svg{ width:100%; height:100%; display:block; }
+  .seal-glow{
+    position:absolute; inset:-18px; border-radius:50%;
+    background: radial-gradient(circle, rgba(246,230,180,.35), transparent 70%);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{ transform:scale(.92); opacity:.6;} 50%{ transform:scale(1.06); opacity:1;} }
+
+  .seal-wrap .crack{
+    stroke: var(--gold-1);
+    stroke-width:1.4;
+    fill:none;
+    opacity:0;
+    stroke-dasharray:60;
+    stroke-dashoffset:60;
+  }
+  .seal-wrap.open .crack{
+    animation: crackline .5s ease forwards;
+  }
+  .seal-wrap.open .seal-face{
+    animation: sealsplit .6s .15s ease forwards;
+  }
+  @keyframes crackline{ 0%{opacity:1; stroke-dashoffset:60;} 100%{opacity:1; stroke-dashoffset:0;} }
+  @keyframes sealsplit{
+    0%{ transform:scale(1); opacity:1; }
+    60%{ transform:scale(1.12); opacity:1; }
+    100%{ transform:scale(1.35); opacity:0; }
+  }
+
+  .tap-hint{
+    font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.3em;
+    color: var(--lilac-soft); text-transform:uppercase;
+    animation: hintfade 2.2s ease-in-out infinite;
+  }
+  @keyframes hintfade{ 0%,100%{opacity:.45;} 50%{opacity:1;} }
+
+  /* petals */
+  #petal-layer{ position:fixed; inset:0; z-index:70; pointer-events:none; overflow:hidden; }
+  .petal{
+    position:absolute; top:-5%; width:14px; height:14px; opacity:.9;
+    background: radial-gradient(circle at 30% 30%, var(--gold-1), var(--petal) 60%, var(--lilac-mid));
+    border-radius: 70% 0 70% 0;
+    animation: fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform: translateY(115vh) translateX(var(--drift,0px)) rotate(var(--spin,240deg)); opacity:0; }
+  }
+
+  /* ============================================================
+     MAIN CONTENT
+  ============================================================= */
+  #content{ position:relative; }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.show{ opacity:1; transform:translateY(0); }
+
+  /* hero / names section */
+  .hero{
+    text-align:center;
+    padding-top:4.2rem;
+  }
+  .hero .eyebrow{ display:block; margin-bottom:.9rem; }
+  .invite-line{ font-family:'Parisienne',cursive; font-size:1.5rem; color:var(--purple-deep); margin-bottom:.6rem; }
+
+  .photo-frame{
+    width:min(78vw, 300px); aspect-ratio:3/4; margin:1.6rem auto 1.4rem;
+    position:relative; border-radius:6px; overflow:hidden;
+    box-shadow:0 18px 40px -14px rgba(91,58,110,.45);
+  }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .photo-frame::after{
+    content:''; position:absolute; inset:8px; border:1px solid rgba(246,230,180,.85);
+    pointer-events:none; border-radius:3px;
+  }
+
+  .names-big{
+    font-size:2.5rem; line-height:1.15; margin:1.2rem 0 .4rem;
+  }
+  .names-big .amp{ font-family:'Parisienne',cursive; color:var(--gold-3); font-size:1.9rem; margin:0 .3rem; }
+  .titles{ font-size:.95rem; letter-spacing:.14em; color:var(--purple-deep); text-transform:uppercase; margin-bottom:1.6rem;}
+
+  .message{
+    font-size:1.05rem; line-height:1.9; color:var(--ink); max-width:44ch; margin:0 auto;
+  }
+
+  .divider{
+    width:60px; height:1px; margin:2.2rem auto; background:linear-gradient(90deg,transparent,var(--gold-2),transparent);
+  }
+
+  .scroll-cue{
+    display:flex; flex-direction:column; align-items:center; gap:.4rem; margin-top:3rem; color:var(--purple-deep);
+  }
+  .scroll-cue span{ font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; opacity:.7; }
+  .chevron{ width:9px; height:9px; border-right:1.4px solid var(--gold-2); border-bottom:1.4px solid var(--gold-2); transform:rotate(45deg); animation:bob 1.8s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{transform:translateY(0) rotate(45deg);} 50%{transform:translateY(6px) rotate(45deg);} }
+
+  /* countdown */
+  .countdown-wrap{ text-align:center; }
+  .countdown-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; max-width:420px; margin:1.6rem auto 0;
+  }
+  .cd-box{
+    background:var(--ivory); border:1px solid var(--lilac-soft);
+    border-radius:10px; padding:.9rem .4rem 1rem;
+    box-shadow:0 10px 26px -16px rgba(91,58,110,.35);
+  }
+  .cd-num{ font-family:'Cormorant Garamond',serif; font-size:1.9rem; color:var(--purple-deep); font-weight:600; }
+  .cd-label{ font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-3); margin-top:.2rem; }
+
+  /* event cards */
+  .event-section{ padding-top:3rem; padding-bottom:3rem; }
+  .event-card{
+    background:var(--ivory);
+    border-radius:18px;
+    padding:2.4rem 1.8rem 2.2rem;
+    text-align:center;
+    position:relative;
+    box-shadow:0 24px 50px -28px rgba(59,36,74,.5);
+    border:1px solid rgba(199,164,75,.25);
+  }
+  .event-card::before, .event-card::after{
+    content:''; position:absolute; width:26px; height:26px; border:1px solid var(--gold-2); opacity:.6;
+  }
+  .event-card::before{ top:12px; left:12px; border-right:none; border-bottom:none; }
+  .event-card::after{ bottom:12px; right:12px; border-left:none; border-top:none; }
+
+  .event-label{ margin-bottom:.5rem; }
+  .event-date{ font-size:1.8rem; margin:.3rem 0 .2rem; }
+  .event-day{ font-size:.85rem; letter-spacing:.16em; text-transform:uppercase; color:var(--purple-deep); margin-bottom:1.1rem;}
+  .event-time{ font-size:1.05rem; color:var(--ink); margin-bottom:1.4rem; }
+  .event-time strong{ color:var(--purple-deep); font-weight:600; }
+  .event-venue{ font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--plum); margin-bottom:.3rem; }
+  .event-place{ font-size:.9rem; color:var(--ink); opacity:.85; margin-bottom:1.6rem; }
+
+  .map-btn{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.8rem 1.7rem; border-radius:999px;
+    font-family:'Cinzel',serif; font-size:.68rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ivory);
+    background:linear-gradient(120deg,var(--gold-3),var(--gold-2) 45%, var(--gold-1) 70%, var(--gold-2));
+    background-size:220% auto;
+    box-shadow:0 10px 22px -10px rgba(138,107,46,.6);
+    transition:background-position .4s ease, transform .2s ease;
+  }
+  .map-btn:hover{ background-position:right center; transform:translateY(-2px); }
+  .map-btn svg{ width:14px; height:14px; }
+
+  /* footer */
+  footer{ text-align:center; padding:4rem 1.5rem 3rem; }
+  .footer-monogram{ font-family:'Parisienne',cursive; font-size:1.7rem; color:var(--purple-deep); margin-bottom:.6rem; }
+  .footer-note{ font-size:.85rem; color:var(--ink); opacity:.75; line-height:1.8; max-width:34ch; margin:0 auto; }
+
+  /* music control */
+  #music-toggle{
+    position:fixed; right:16px; bottom:16px; z-index:50;
+    width:48px; height:48px; border-radius:50%;
+    background:var(--ivory); border:1px solid var(--lilac-soft);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 24px -10px rgba(91,58,110,.4);
+    cursor:pointer;
+  }
+  #music-toggle svg{ width:20px; height:20px; fill:var(--purple-deep); }
+  #music-toggle.playing svg#icon-note{ animation:spin 3.5s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  @media (min-width:640px){
+    .names-big{ font-size:3rem; }
+    section{ max-width:600px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  }
+</style>
+</head>
+<body class="locked">
+
+<!-- ============================================================
+     COVER SCREEN — tap the seal to open the invitation
+============================================================= -->
+<div id="cover">
+  <div class="cover-bg"></div>
+  <div class="frame-corner tl"></div>
+  <div class="frame-corner tr"></div>
+  <div class="frame-corner bl"></div>
+  <div class="frame-corner br"></div>
+
+  <div class="cover-inner">
+    <span class="eyebrow cover-eyebrow">The Wedding Of</span>
+    <div class="cover-names">
+      <span id="cover-bride">Athira</span>
+      <span class="amp">&amp;</span>
+      <span id="cover-groom">Nipun</span>
+    </div>
+
+    <div class="seal-wrap" id="seal" onclick="openInvite()" role="button" aria-label="Tap to open invitation">
+      <div class="seal-glow"></div>
+      <svg viewBox="0 0 128 128">
+        <g class="seal-face">
+          <circle cx="64" cy="64" r="52" fill="none" stroke="url(#g1)" stroke-width="2"/>
+          <circle cx="64" cy="64" r="44" fill="none" stroke="#F6E6B4" stroke-width="1" opacity=".6"/>
+          <text x="64" y="72" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="30" fill="#F6E6B4">A&amp;N</text>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#8A6B2E"/>
+              <stop offset="50%" stop-color="#F6E6B4"/>
+              <stop offset="100%" stop-color="#C9A24B"/>
+            </linearGradient>
+          </defs>
+        </g>
+        <path class="crack" d="M40 50 L58 62 L50 78 L70 70 L64 96"/>
+        <path class="crack" d="M88 44 L70 60 L82 74" style="animation-delay:.05s"/>
+      </svg>
+    </div>
+
+    <p class="tap-hint">Tap the seal to open</p>
+  </div>
+</div>
+
+<div id="petal-layer"></div>
+
+<!-- ============================================================
+     MAIN INVITATION CONTENT
+============================================================= -->
+<main id="content">
+
+  <section class="hero reveal" id="sec-hero">
+    <span class="eyebrow">Together With Their Families</span>
+    <p class="invite-line">we joyfully invite you to celebrate</p>
+
+    <div class="photo-frame">
+      <img src="assets/couple.jpg" alt="Dr. Athira and Dr. Nipun">
+    </div>
+
+    <h1 class="names-big">
+      <span id="name-bride">Dr. Athira</span><span class="amp">&amp;</span><span id="name-groom">Dr. Nipun</span>
+    </h1>
+    <p class="titles">Are Getting Married</p>
+
+    <p class="message" id="invite-message">
+      Two hearts, one journey — with the blessings of our elders and the joy of our loved ones,
+      we begin a new chapter together. Your presence would make this moment truly complete.
+      We warmly invite you to be part of our celebration.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="chevron"></div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown-wrap reveal" id="sec-countdown">
+    <span class="eyebrow">Counting Down To</span>
+    <h2 style="font-size:1.6rem; margin-top:.6rem;">Our Wedding Day</h2>
+    <div class="countdown-grid" id="countdown">
+      <div class="cd-box"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Days</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Hours</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">Mins</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">Secs</div></div>
+    </div>
+  </section>
+
+  <!-- WEDDING -->
+  <section class="event-section reveal" id="sec-wedding">
+    <div class="event-card">
+      <span class="eyebrow event-label">The Wedding</span>
+      <div class="event-date">30<sup style="font-size:1rem;">th</sup> August 2026</div>
+      <div class="event-day">Sunday</div>
+      <div class="event-time"><strong>10:15 AM</strong> — 11:00 AM</div>
+      <div class="event-venue">Safa Convention Center</div>
+      <div class="event-place">Koppam</div>
+      <a class="map-btn" id="wedding-map" href="https://maps.app.goo.gl/har9cuj8u1jbsEX7A" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 11.5 7.3 11.7a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+        View Location
+      </a>
+    </div>
+  </section>
+
+  <!-- RECEPTION -->
+  <section class="event-section reveal" id="sec-reception">
+    <div class="event-card">
+      <span class="eyebrow event-label">The Reception</span>
+      <div class="event-date">31<sup style="font-size:1rem;">st</sup> August 2026</div>
+      <div class="event-day">Monday</div>
+      <div class="event-time"><strong>5:00 PM</strong> — 8:00 PM</div>
+      <div class="event-venue">Malabar Avenue Auditorium</div>
+      <div class="event-place">Ramanattukara</div>
+      <a class="map-btn" id="reception-map" href="https://maps.app.goo.gl/2t9hdrVvGr1m4xxcA" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 11.5 7.3 11.7a1 1 0 0 0 1.4 0C13 21.5 20 15.4 20 10c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+        View Location
+      </a>
+    </div>
+  </section>
+
+  <footer class="reveal" id="sec-footer">
+    <div class="footer-monogram">Athira &amp; Nipun</div>
+    <p class="footer-note">With love and gratitude, we look forward to celebrating<br>this beautiful beginning with you.</p>
+  </footer>
+
+</main>
+
+<!-- Background music control -->
+<audio id="bg-audio" src="assets/background-music.mp3" loop preload="auto"></audio>
+<div id="music-toggle" onclick="toggleMusic()" role="button" aria-label="Toggle background music">
+  <svg id="icon-note" viewBox="0 0 24 24"><path d="M9 17V5l11-2v12M9 17a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm11-4a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+
+<script>
+/* ============================================================
+   EDITABLE CONFIG — change names, dates, venues & links here
+============================================================= */
+const CONFIG = {
+  weddingDateTime: "2026-08-30T10:15:00+05:30" // used for the countdown timer
+};
+
+/* ---------- Opening seal / reveal ---------- */
+function openInvite(){
+  const seal = document.getElementById('seal');
+  const cover = document.getElementById('cover');
+  const audio = document.getElementById('bg-audio');
+
+  if(seal.classList.contains('open')) return;
+  seal.classList.add('open');
+
+  // try to start music on this user gesture
+  audio.volume = 0.65;
+  audio.play().then(()=>{
+    document.getElementById('music-toggle').classList.add('playing');
+  }).catch(()=>{ /* autoplay blocked, user can tap the music button */ });
+
+  setTimeout(()=>{
+    cover.classList.add('hide');
+    document.body.classList.remove('locked');
+    spawnPetals();
+    initReveal();
+  }, 480);
+}
+
+/* ---------- Mild petal pop after reveal ---------- */
+function spawnPetals(){
+  const layer = document.getElementById('petal-layer');
+  const total = 20;
+  for(let i=0;i<total;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const left = Math.random()*100;
+    const duration = 3 + Math.random()*2;
+    const delay = Math.random()*0.6;
+    const drift = (Math.random()*80-40) + 'px';
+    const spin = (Math.random()*360+180) + 'deg';
+    const size = 8 + Math.random()*10;
+    p.style.left = left+'vw';
+    p.style.width = size+'px';
+    p.style.height = size+'px';
+    p.style.animationDuration = duration+'s';
+    p.style.animationDelay = delay+'s';
+    p.style.setProperty('--drift', drift);
+    p.style.setProperty('--spin', spin);
+    layer.appendChild(p);
+    p.addEventListener('animationend', ()=>p.remove());
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+function initReveal(){
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); }
+    });
+  }, { threshold:0.18 });
+  items.forEach(el=>io.observe(el));
+  // reveal hero immediately since it's visible right away
+  document.getElementById('sec-hero').classList.add('show');
+}
+
+/* ---------- Countdown ---------- */
+function updateCountdown(){
+  const target = new Date(CONFIG.weddingDateTime).getTime();
+  const now = Date.now();
+  let diff = target - now;
+  if(diff < 0) diff = 0;
+
+  const d = Math.floor(diff/(1000*60*60*24));
+  const h = Math.floor((diff/(1000*60*60))%24);
+  const m = Math.floor((diff/(1000*60))%60);
+  const s = Math.floor((diff/1000)%60);
+
+  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* ---------- Music toggle ---------- */
+function toggleMusic(){
+  const audio = document.getElementById('bg-audio');
+  const btn = document.getElementById('music-toggle');
+  if(audio.paused){
+    audio.play();
+    btn.classList.add('playing');
+  } else {
+    audio.pause();
+    btn.classList.remove('playing');
+  }
+}
+</script>
+</body>
+</html>
